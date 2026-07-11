@@ -54,6 +54,11 @@ export const postJob = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+
+    return res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+    });
   }
 };
 
@@ -79,6 +84,11 @@ export const getAllJobs = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
+
+    return res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+    });
   }
 };
 
@@ -87,9 +97,9 @@ export const getJobById = async (req, res) => {
   try {
     const jobId = req.params.id;
 
-    const job = await Job.findById(jobId).populate({
-      path: "applications",
-    });
+    const job = await Job.findById(jobId)
+      .populate("company")
+      .populate("applications");
 
     if (!job) {
       return res.status(404).json({
@@ -99,20 +109,23 @@ export const getJobById = async (req, res) => {
     }
 
     return res.status(200).json({
-      job,
       success: true,
+      job,
     });
   } catch (error) {
     console.log(error);
+
+    return res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+    });
   }
 };
 
-// Admin - Get All Posted Jobs
-/* export const getAdminJobs = async (req, res) => {
+// Recruiter - Get Only His Posted Jobs
+export const getAdminJobs = async (req, res) => {
   try {
     const adminId = req.id;
-
-    console.log("Admin ID:", adminId);
 
     const jobs = await Job.find({
       created_by: adminId,
@@ -120,29 +133,16 @@ export const getJobById = async (req, res) => {
       .populate("company")
       .sort({ createdAt: -1 });
 
-    console.log("Admin Jobs:", jobs);
-
     return res.status(200).json({
       success: true,
       jobs,
     });
   } catch (error) {
     console.log(error);
-  }
-}; */
-export const getAdminJobs = async (req, res) => {
-  try {
-    const jobs = await Job.find({})
-      .populate("company")
-      .sort({ createdAt: -1 });
 
-    console.log(jobs);
-
-    return res.status(200).json({
-      success: true,
-      jobs,
+    return res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
     });
-  } catch (error) {
-    console.log(error);
   }
 };
