@@ -48,7 +48,7 @@ const PostJob = () => {
     });
   };
 
-  const selectChangeHandler = (value) => {
+  /* const selectChangeHandler = (value) => {
     const selectedCompany = companies.find(
       (company) => company.name.toLowerCase() === value,
     );
@@ -59,6 +59,12 @@ const PostJob = () => {
         companyId: selectedCompany._id,
       });
     }
+  }; */
+  const selectChangeHandler = (value) => {
+    setInput({
+      ...input,
+      companyId: value,
+    });
   };
 
   const submitHandler = async (e) => {
@@ -192,10 +198,7 @@ const PostJob = () => {
                   >
                     <SelectGroup>
                       {companies.map((company) => (
-                        <SelectItem
-                          key={company._id}
-                          value={company.name.toLowerCase()}
-                        >
+                        <SelectItem key={company._id} value={company._id}>
                           {company.name}
                         </SelectItem>
                       ))}
