@@ -50,7 +50,7 @@ const PostJob = () => {
 
   const selectChangeHandler = (value) => {
     const selectedCompany = companies.find(
-      (company) => company.name.toLowerCase() === value
+      (company) => company.name.toLowerCase() === value,
     );
 
     if (selectedCompany) {
@@ -67,16 +67,12 @@ const PostJob = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(
-        `${JOB_API_END_POINT}/post`,
-        input,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
 
       if (res.data.success) {
         toast.success(res.data.message);
@@ -190,7 +186,10 @@ const PostJob = () => {
                     <SelectValue placeholder="Select a Company" />
                   </SelectTrigger>
 
-                  <SelectContent>
+                  <SelectContent
+                    position="popper"
+                    className="w-[var(--radix-select-trigger-width)]"
+                  >
                     <SelectGroup>
                       {companies.map((company) => (
                         <SelectItem
@@ -207,24 +206,24 @@ const PostJob = () => {
             )}
           </div>
 
-    {loading ? (
-  <Button
-    disabled
-    variant="outline"
-    className="w-full mt-8 rounded-xl bg-violet-600 border-violet-600 text-white hover:bg-violet-700 hover:text-white"
-  >
-    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-    Please wait
-  </Button>
-) : (
-  <Button
-    type="submit"
-    variant="outline"
-    className="w-full mt-8 rounded-xl bg-violet-600 border-violet-600 text-white hover:bg-violet-700 hover:text-white"
-  >
-    Post New Job
-  </Button>
-)}
+          {loading ? (
+            <Button
+              disabled
+              variant="outline"
+              className="w-full mt-8 rounded-xl bg-violet-600 border-violet-600 text-white hover:bg-violet-700 hover:text-white"
+            >
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              variant="outline"
+              className="w-full mt-8 rounded-xl bg-violet-600 border-violet-600 text-white hover:bg-violet-700 hover:text-white"
+            >
+              Post New Job
+            </Button>
+          )}
 
           {companies.length === 0 && (
             <p className="text-xs text-center text-red-600 font-bold my-3">

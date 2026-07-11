@@ -107,17 +107,20 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-"relative flex w-full min-w-0 cursor-default items-center gap-2 rounded-md py-2 px-3 text-sm whitespace-nowrap overflow-hidden text-ellipsis outline-none select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+        "relative flex w-full min-w-0 cursor-default items-center gap-2 rounded-md py-2 px-3 text-sm whitespace-nowrap overflow-hidden text-ellipsis outline-none select-none focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50",
         className
       )}
-      {...props}>
-      <span
-        className="pointer-events-none absolute right-2 flex size-4 items-center justify-center">
+      {...props}
+    >
+      <span className="pointer-events-none absolute right-2 flex size-4 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <CheckIcon className="pointer-events-none" />
+          <CheckIcon className="pointer-events-none size-4" />
         </SelectPrimitive.ItemIndicator>
       </span>
-      
+
+      <SelectPrimitive.ItemText className="block w-full truncate">
+        {children}
+      </SelectPrimitive.ItemText>
     </SelectPrimitive.Item>
   );
 }
