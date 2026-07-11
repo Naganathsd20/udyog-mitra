@@ -48,23 +48,11 @@ const PostJob = () => {
     });
   };
 
-  /* const selectChangeHandler = (value) => {
-    const selectedCompany = companies.find(
-      (company) => company.name.toLowerCase() === value,
-    );
-
-    if (selectedCompany) {
-      setInput({
-        ...input,
-        companyId: selectedCompany._id,
-      });
-    }
-  }; */
   const selectChangeHandler = (value) => {
-    setInput({
-      ...input,
+    setInput((prev) => ({
+      ...prev,
       companyId: value,
-    });
+    }));
   };
 
   const submitHandler = async (e) => {
@@ -73,12 +61,16 @@ const PostJob = () => {
     try {
       setLoading(true);
 
-      const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${JOB_API_END_POINT}/post`,
+        input,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
       if (res.data.success) {
         toast.success(res.data.message);
@@ -90,8 +82,6 @@ const PostJob = () => {
       setLoading(false);
     }
   };
-
-  console.log("Companies:", companies);
 
   return (
     <div>
@@ -192,13 +182,13 @@ const PostJob = () => {
                     <SelectValue placeholder="Select a Company" />
                   </SelectTrigger>
 
-                  <SelectContent
-                    position="popper"
-                    className="w-[var(--radix-select-trigger-width)]"
-                  >
+                  <SelectContent position="popper">
                     <SelectGroup>
                       {companies.map((company) => (
-                        <SelectItem key={company._id} value={company._id}>
+                        <SelectItem
+                          key={company._id}
+                          value={company._id}
+                        >
                           {company.name}
                         </SelectItem>
                       ))}
@@ -212,8 +202,7 @@ const PostJob = () => {
           {loading ? (
             <Button
               disabled
-              variant="outline"
-              className="w-full mt-8 rounded-xl bg-violet-600 border-violet-600 text-white hover:bg-violet-700 hover:text-white"
+              className="w-full mt-8 bg-violet-600 hover:bg-violet-700 text-white"
             >
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Please wait
@@ -221,15 +210,14 @@ const PostJob = () => {
           ) : (
             <Button
               type="submit"
-              variant="outline"
-              className="w-full mt-8 rounded-xl bg-violet-600 border-violet-600 text-white hover:bg-violet-700 hover:text-white"
+              className="w-full mt-8 bg-violet-600 hover:bg-violet-700 text-white"
             >
               Post New Job
             </Button>
           )}
 
           {companies.length === 0 && (
-            <p className="text-xs text-center text-red-600 font-bold my-3">
+            <p className="text-center text-red-600 font-semibold mt-4">
               *Please register a company first before posting a job.
             </p>
           )}
