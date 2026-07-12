@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { LogOut, User2, Bookmark } from "lucide-react";
+import {
+  LogOut,
+  User2,
+  Bookmark,
+  Menu,
+  X,
+} from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
 import { USER_API_END_POINT } from "@/utils/constant";
@@ -20,6 +26,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo({

@@ -38,21 +38,21 @@ const Applicants = () => {
     <div className="min-h-screen bg-slate-50">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900">
+          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900">
             Applicants
           </h1>
 
-          <p className="text-slate-500 mt-2">
+          <p className="text-slate-500 mt-2 text-sm sm:text-base">
             Review and manage candidates who applied for this job.
           </p>
         </div>
 
         {/* Applicants Card */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-          <div className="flex items-center justify-between border-b border-slate-200 pb-4 mb-6">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-200 pb-4 mb-6">
             <div>
               <h2 className="text-xl font-semibold text-slate-900">
                 Total Applicants

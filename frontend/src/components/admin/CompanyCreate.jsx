@@ -51,8 +51,7 @@ const CompanyCreate = () => {
     <div className="min-h-screen bg-slate-50">
       <Navbar />
 
-      <div className="max-w-3xl mx-auto px-4 py-10">
-
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
         <Button
           variant="outline"
           onClick={() => navigate("/admin/companies")}
@@ -62,19 +61,18 @@ const CompanyCreate = () => {
           Back
         </Button>
 
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-md p-10">
-
-          <div className="flex items-center gap-3 mb-6">
-            <div className="bg-violet-100 p-3 rounded-xl">
-              <Building2 className="text-violet-600" size={28} />
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-md p-5 sm:p-8 lg:p-10">
+          <div className="flex items-start gap-3 mb-6">
+            <div className="bg-violet-100 p-3 rounded-xl flex-shrink-0">
+              <Building2 className="text-violet-600 h-7 w-7" />
             </div>
 
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
                 Create Company
               </h1>
 
-              <p className="text-slate-500 mt-1">
+              <p className="text-slate-500 mt-1 text-sm sm:text-base">
                 Start by entering your company name. You can update the remaining
                 details later.
               </p>
@@ -95,23 +93,22 @@ const CompanyCreate = () => {
             />
           </div>
 
-          <div className="flex justify-end gap-3 mt-10">
+          <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 mt-10">
             <Button
               variant="outline"
               onClick={() => navigate("/admin/companies")}
-              className="rounded-xl"
+              className="w-full sm:w-auto rounded-xl"
             >
               Cancel
             </Button>
 
             <Button
               onClick={registerCompany}
-              className="bg-violet-600 hover:bg-violet-700 rounded-xl px-8"
+              className="w-full sm:w-auto bg-violet-600 hover:bg-violet-700 rounded-xl px-8"
             >
               Continue
             </Button>
           </div>
-
         </div>
       </div>
     </div>

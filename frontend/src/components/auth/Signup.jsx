@@ -88,16 +88,16 @@ const Signup = () => {
     <div className="min-h-screen bg-slate-50">
       <Navbar />
 
-      <div className="flex items-center justify-center px-4 py-10">
+      <div className="flex items-center justify-center px-4 py-6 sm:py-10">
         <form
           onSubmit={submitHandler}
-          className="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-lg p-8"
+          className="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-lg p-6 sm:p-8"
         >
-          <h1 className="text-3xl font-bold text-center text-slate-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-2">
             Create Account
           </h1>
 
-          <p className="text-center text-slate-500 mb-8">
+          <p className="text-center text-slate-500 text-sm sm:text-base mb-8">
             Join UdyogMitra and start your career journey.
           </p>
 
@@ -150,7 +150,7 @@ const Signup = () => {
           </div>
 
           <div className="mt-6 space-y-5">
-            <RadioGroup className="flex justify-center gap-8">
+            <RadioGroup className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
               <div className="flex items-center space-x-2">
                 <Input
                   type="radio"
@@ -179,7 +179,7 @@ const Signup = () => {
             <div>
               <Label>Profile Image</Label>
               <Input
-                className="mt-2 rounded-lg border-slate-300"
+                className="mt-2 rounded-lg border-slate-300 text-sm"
                 type="file"
                 accept="image/*"
                 onChange={changeFileHandler}

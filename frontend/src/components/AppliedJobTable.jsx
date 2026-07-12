@@ -15,16 +15,18 @@ const AppliedJobTable = () => {
   const { allAppliedJobs } = useSelector((store) => store.job);
 
   return (
-    <div>
+    <div className="w-full overflow-x-auto">
       <Table>
         <TableCaption>A list of your applied jobs</TableCaption>
 
         <TableHeader>
           <TableRow>
-            <TableHead>Date</TableHead>
-            <TableHead>Job Role</TableHead>
-            <TableHead>Company</TableHead>
-            <TableHead className="text-right">Status</TableHead>
+            <TableHead className="min-w-[120px]">Date</TableHead>
+            <TableHead className="min-w-[180px]">Job Role</TableHead>
+            <TableHead className="min-w-[160px]">Company</TableHead>
+            <TableHead className="text-right min-w-[120px]">
+              Status
+            </TableHead>
           </TableRow>
         </TableHeader>
 
@@ -45,7 +47,7 @@ const AppliedJobTable = () => {
                   {appliedJob?.createdAt?.split("T")[0]}
                 </TableCell>
 
-                <TableCell>
+                <TableCell className="font-medium">
                   {appliedJob?.job?.title}
                 </TableCell>
 

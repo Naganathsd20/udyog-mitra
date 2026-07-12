@@ -31,7 +31,7 @@ const SavedJobs = () => {
         {},
         {
           withCredentials: true,
-        },
+        }
       );
 
       if (res.data.success) {
@@ -51,54 +51,70 @@ const SavedJobs = () => {
     <div className="min-h-screen bg-slate-50">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto my-10 px-4">
+      <div className="max-w-7xl mx-auto my-8 sm:my-10 px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900">Saved Jobs</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 text-center sm:text-left">
+            Saved Jobs
+          </h1>
 
-          <p className="text-slate-500 mt-2">
+          <p className="text-slate-500 mt-2 text-center sm:text-left">
             Manage all your bookmarked opportunities.
           </p>
         </div>
 
         {savedJobs.length === 0 ? (
-          <div className="bg-white rounded-2xl border border-slate-200 text-center py-20 shadow-sm">
-            <BookmarkCheck className="mx-auto h-16 w-16 text-gray-400" />
-            <h2 className="text-2xl font-semibold mt-4">No Saved Jobs</h2>
-            <p className="text-gray-500 mt-2">Save jobs to view them here.</p>
+          <div className="bg-white rounded-2xl border border-slate-200 text-center py-12 sm:py-20 shadow-sm">
+            <BookmarkCheck className="mx-auto h-14 w-14 sm:h-16 sm:w-16 text-gray-400" />
+
+            <h2 className="text-xl sm:text-2xl font-semibold mt-4">
+              No Saved Jobs
+            </h2>
+
+            <p className="text-gray-500 mt-2 text-sm sm:text-base">
+              Save jobs to view them here.
+            </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {savedJobs.map((job) => (
               <div
                 key={job._id}
-                className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col"
               >
                 <img
                   src={job.company?.logo}
-                  alt=""
-                  className="w-16 h-16 rounded-xl object-cover border border-slate-200 p-2 mb-4"
+                  alt={job.company?.name}
+                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl object-cover border border-slate-200 p-2 mb-4"
                 />
 
-                <h2 className="font-bold text-xl">{job.title}</h2>
+                <h2 className="font-bold text-lg sm:text-xl">
+                  {job.title}
+                </h2>
 
-                <p className="text-slate-500">{job.company?.name}</p>
+                <p className="text-slate-500">
+                  {job.company?.name}
+                </p>
 
-                <div className="flex items-center gap-2 mt-3">
+                <div className="flex items-center gap-2 mt-3 text-sm sm:text-base">
                   <MapPin size={16} />
-                  {job.location}
+                  <span>{job.location}</span>
                 </div>
 
-                <div className="flex items-center gap-2 mt-2">
+                <div className="flex items-center gap-2 mt-2 text-sm sm:text-base">
                   <Briefcase size={16} />
-                  {job.jobType}
+                  <span>{job.jobType}</span>
                 </div>
 
                 <p className="font-bold text-violet-600 mt-3">
                   ₹ {job.salary} LPA
                 </p>
 
-                <div className="flex gap-2 mt-5">
-                  <Link to={`/description/${job._id}`} className="flex-1">
+                <div className="mt-auto pt-5 flex flex-col sm:flex-row gap-2">
+                  <Link
+                    to={`/description/${job._id}`}
+                    className="flex-1"
+                  >
                     <Button className="w-full bg-violet-600 hover:bg-violet-700">
                       View
                     </Button>
@@ -107,6 +123,7 @@ const SavedJobs = () => {
                   <Button
                     variant="destructive"
                     onClick={() => removeSavedJob(job._id)}
+                    className="w-full sm:w-auto"
                   >
                     Remove
                   </Button>

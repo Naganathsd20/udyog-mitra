@@ -36,7 +36,7 @@ const CompaniesTable = () => {
   }, [companies, searchCompanyByText]);
 
   return (
-    <div className="rounded-2xl overflow-hidden border border-slate-200">
+    <div className="w-full overflow-x-auto rounded-2xl border border-slate-200">
       <Table>
         <TableCaption className="py-5 text-slate-500">
           A list of your registered companies
@@ -44,10 +44,19 @@ const CompaniesTable = () => {
 
         <TableHeader className="bg-slate-100">
           <TableRow>
-            <TableHead className="font-semibold">Logo</TableHead>
-            <TableHead className="font-semibold">Company Name</TableHead>
-            <TableHead className="font-semibold">Created On</TableHead>
-            <TableHead className="text-right font-semibold">
+            <TableHead className="min-w-[90px] font-semibold">
+              Logo
+            </TableHead>
+
+            <TableHead className="min-w-[220px] font-semibold">
+              Company Name
+            </TableHead>
+
+            <TableHead className="min-w-[140px] font-semibold">
+              Created On
+            </TableHead>
+
+            <TableHead className="min-w-[100px] text-right font-semibold">
               Action
             </TableHead>
           </TableRow>
@@ -79,7 +88,7 @@ const CompaniesTable = () => {
                   {company.name}
                 </TableCell>
 
-                <TableCell className="text-slate-500">
+                <TableCell className="text-slate-500 whitespace-nowrap">
                   {company.createdAt?.split("T")[0]}
                 </TableCell>
 

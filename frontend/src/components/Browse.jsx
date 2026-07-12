@@ -21,24 +21,27 @@ const Browse = () => {
     <div className="min-h-screen bg-slate-50">
       <Navbar />
 
-      <div className="max-w-7xl mx-auto my-10 px-4">
+      <div className="max-w-7xl mx-auto my-8 sm:my-10 px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-slate-900">
+          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 text-center sm:text-left">
             Search Results
           </h1>
 
-          <p className="text-slate-500 mt-2">
+          <p className="text-slate-500 mt-2 text-center sm:text-left text-sm sm:text-base">
             {allJobs.length} jobs found
           </p>
         </div>
 
+        {/* Jobs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {allJobs.length <= 0 ? (
-            <div className="col-span-full text-center py-20">
-              <h2 className="text-2xl font-semibold text-slate-700">
+            <div className="col-span-full text-center py-16 sm:py-20">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-slate-700">
                 No Jobs Found
               </h2>
-              <p className="text-slate-500 mt-2">
+
+              <p className="text-slate-500 mt-2 text-sm sm:text-base">
                 Try searching with different keywords.
               </p>
             </div>

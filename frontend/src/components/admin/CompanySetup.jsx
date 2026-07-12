@@ -69,7 +69,7 @@ const CompanySetup = () => {
             "Content-Type": "multipart/form-data",
           },
           withCredentials: true,
-        }
+        },
       );
 
       if (res.data.success) {
@@ -78,9 +78,7 @@ const CompanySetup = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(
-        error.response?.data?.message || "Something went wrong"
-      );
+      toast.error(error.response?.data?.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -102,8 +100,7 @@ const CompanySetup = () => {
     <div className="min-h-screen bg-slate-50">
       <Navbar />
 
-      <div className="max-w-4xl mx-auto px-4 py-10">
-
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
         <Button
           type="button"
           variant="outline"
@@ -114,28 +111,25 @@ const CompanySetup = () => {
           Back
         </Button>
 
-        <div className="bg-white rounded-3xl shadow-md border border-slate-200 p-8">
-
-          <div className="flex items-center gap-4 mb-8">
-            <div className="bg-violet-100 p-3 rounded-xl">
+        <div className="bg-white rounded-3xl shadow-md border border-slate-200 p-5 sm:p-8">
+          <div className="flex items-start gap-4 mb-8">
+            <div className="bg-violet-100 p-3 rounded-xl flex-shrink-0">
               <Building2 className="text-violet-600" size={30} />
             </div>
 
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">
+              <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
                 Company Setup
               </h1>
 
-              <p className="text-slate-500 mt-1">
+              <p className="text-slate-500 mt-1 text-sm sm:text-base">
                 Update your company information and branding.
               </p>
             </div>
           </div>
 
           <form onSubmit={submitHandler}>
-
             <div className="grid md:grid-cols-2 gap-6">
-
               <div>
                 <Label>Company Name</Label>
                 <Input
@@ -184,13 +178,12 @@ const CompanySetup = () => {
                 <Label>Company Logo</Label>
 
                 <Input
-                  className="mt-2 rounded-xl border-slate-300"
+                  className="mt-2 w-full rounded-xl border-slate-300"
                   type="file"
                   accept="image/*"
                   onChange={changeFileHandler}
                 />
               </div>
-
             </div>
 
             {loading ? (
@@ -209,11 +202,8 @@ const CompanySetup = () => {
                 Save Changes
               </Button>
             )}
-
           </form>
-
         </div>
-
       </div>
     </div>
   );
