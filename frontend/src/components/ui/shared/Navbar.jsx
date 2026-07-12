@@ -26,6 +26,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const Navbar = () => {
       top: 0,
       behavior: "smooth",
     });
+    setOpen(false);
   }, [pathname]);
 
   const logoutHandler = async () => {
@@ -47,40 +49,34 @@ const Navbar = () => {
         toast.success(res.data.message);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.response?.data?.message);
     }
   };
 
   return (
     <div className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-      <div className="flex items-center justify-between mx-auto max-w-7xl h-20 px-6">
+      {/* Desktop + Mobile Header */}
+      <div className="flex items-center justify-between mx-auto max-w-7xl h-20 px-4 sm:px-6">
         {/* Logo */}
-        <div>
-          <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">
+        <Link to="/">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
             Udyog<span className="text-[#F83002]">Mitra</span>
           </h1>
-        </div>
+        </Link>
 
-        {/* Right Section */}
-        <div className="flex items-center gap-8">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-8">
           <ul className="flex items-center gap-8 font-medium text-slate-700">
             {user && user.role === "recruiter" ? (
               <>
                 <li>
-                  <Link
-                    to="/admin/companies"
-                    className="transition-all duration-200 hover:text-[#6A38C2] hover:scale-105"
-                  >
+                  <Link to="/admin/companies" className="hover:text-[#6A38C2]">
                     Companies
                   </Link>
                 </li>
 
                 <li>
-                  <Link
-                    to="/admin/jobs"
-                    className="transition-all duration-200 hover:text-[#6A38C2] hover:scale-105"
-                  >
+                  <Link to="/admin/jobs" className="hover:text-[#6A38C2]">
                     Jobs
                   </Link>
                 </li>
@@ -88,22 +84,19 @@ const Navbar = () => {
             ) : (
               <>
                 <li>
-                  <Link to="/" className="hover:text-[#6A38C2] transition">
+                  <Link to="/" className="hover:text-[#6A38C2]">
                     Home
                   </Link>
                 </li>
 
                 <li>
-                  <Link to="/jobs" className="hover:text-[#6A38C2] transition">
+                  <Link to="/jobs" className="hover:text-[#6A38C2]">
                     Jobs
                   </Link>
                 </li>
 
                 <li>
-                  <Link
-                    to="/browse"
-                    className="hover:text-[#6A38C2] transition"
-                  >
+                  <Link to="/browse" className="hover:text-[#6A38C2]">
                     Browse
                   </Link>
                 </li>
@@ -112,7 +105,7 @@ const Navbar = () => {
           </ul>
 
           {!user ? (
-            <div className="flex items-center gap-2">
+            <div className="flex gap-2">
               <Link to="/login">
                 <Button variant="outline">Login</Button>
               </Link>
@@ -127,32 +120,24 @@ const Navbar = () => {
             <Popover>
               <PopoverTrigger asChild>
                 <Avatar className="cursor-pointer">
-                  <AvatarImage
-                    src={user?.profile?.profilePhoto}
-                    alt="profile"
-                  />
+                  <AvatarImage src={user?.profile?.profilePhoto} />
                   <AvatarFallback>
-                    {user?.fullname?.charAt(0) || "U"}
+                    {user?.fullname?.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
               </PopoverTrigger>
 
-              <PopoverContent className="w-80 rounded-xl border border-slate-200 shadow-xl">
+              <PopoverContent className="w-80">
                 <div className="flex gap-3">
                   <Avatar className="h-12 w-12">
-                    <AvatarImage
-                      src={user?.profile?.profilePhoto}
-                      alt="profile"
-                    />
+                    <AvatarImage src={user?.profile?.profilePhoto} />
                     <AvatarFallback>
-                      {user?.fullname?.charAt(0) || "U"}
+                      {user?.fullname?.charAt(0)}
                     </AvatarFallback>
                   </Avatar>
 
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-slate-900">
-                      {user?.fullname}
-                    </h4>
+                  <div>
+                    <h4 className="font-semibold">{user?.fullname}</h4>
 
                     <p className="text-sm text-muted-foreground">
                       {user?.profile?.bio}
@@ -163,28 +148,28 @@ const Navbar = () => {
                         <>
                           <Link
                             to="/profile"
-                            className="flex items-center gap-2 hover:text-[#6A38C2] transition"
+                            className="flex items-center gap-2 hover:text-violet-600"
                           >
                             <User2 size={18} />
-                            <span>View Profile</span>
+                            Profile
                           </Link>
 
                           <Link
                             to="/saved-jobs"
-                            className="flex items-center gap-2 hover:text-[#6A38C2] transition"
+                            className="flex items-center gap-2 hover:text-violet-600"
                           >
                             <Bookmark size={18} />
-                            <span>Saved Jobs</span>
+                            Saved Jobs
                           </Link>
                         </>
                       )}
 
                       <button
                         onClick={logoutHandler}
-                        className="flex items-center gap-2 hover:text-red-600 transition"
+                        className="flex items-center gap-2 hover:text-red-600"
                       >
                         <LogOut size={18} />
-                        <span>Logout</span>
+                        Logout
                       </button>
                     </div>
                   </div>
@@ -193,7 +178,71 @@ const Navbar = () => {
             </Popover>
           )}
         </div>
+
+        {/* Mobile Hamburger */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <X size={28} /> : <Menu size={28} />}
+        </Button>
       </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="md:hidden border-t border-slate-200 bg-white">
+          <div className="flex flex-col gap-4 px-6 py-5">
+
+            {user && user.role === "recruiter" ? (
+              <>
+                <Link to="/admin/companies">Companies</Link>
+                <Link to="/admin/jobs">Jobs</Link>
+              </>
+            ) : (
+              <>
+                <Link to="/">Home</Link>
+                <Link to="/jobs">Jobs</Link>
+                <Link to="/browse">Browse</Link>
+              </>
+            )}
+
+            {!user ? (
+              <>
+                <Link to="/login">
+                  <Button variant="outline" className="w-full">
+                    Login
+                  </Button>
+                </Link>
+
+                <Link to="/signup">
+                  <Button className="w-full bg-[#6A38C2] hover:bg-[#5b38a6]">
+                    Signup
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <>
+                {user.role === "student" && (
+                  <>
+                    <Link to="/profile">Profile</Link>
+                    <Link to="/saved-jobs">Saved Jobs</Link>
+                  </>
+                )}
+
+                <Button
+                  variant="destructive"
+                  onClick={logoutHandler}
+                  className="w-full"
+                >
+                  Logout
+                </Button>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
