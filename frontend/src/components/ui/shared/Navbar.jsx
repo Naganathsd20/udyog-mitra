@@ -8,13 +8,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import {
-  LogOut,
-  User2,
-  Bookmark,
-  Menu,
-  X,
-} from "lucide-react";
+import { LogOut, User2, Bookmark, Menu, X } from "lucide-react";
 import axios from "axios";
 import { toast } from "sonner";
 import { USER_API_END_POINT } from "@/utils/constant";
@@ -121,9 +115,7 @@ const Navbar = () => {
               <PopoverTrigger asChild>
                 <Avatar className="cursor-pointer">
                   <AvatarImage src={user?.profile?.profilePhoto} />
-                  <AvatarFallback>
-                    {user?.fullname?.charAt(0)}
-                  </AvatarFallback>
+                  <AvatarFallback>{user?.fullname?.charAt(0)}</AvatarFallback>
                 </Avatar>
               </PopoverTrigger>
 
@@ -131,9 +123,7 @@ const Navbar = () => {
                 <div className="flex gap-3">
                   <Avatar className="h-12 w-12">
                     <AvatarImage src={user?.profile?.profilePhoto} />
-                    <AvatarFallback>
-                      {user?.fullname?.charAt(0)}
-                    </AvatarFallback>
+                    <AvatarFallback>{user?.fullname?.charAt(0)}</AvatarFallback>
                   </Avatar>
 
                   <div>
@@ -166,10 +156,10 @@ const Navbar = () => {
 
                       <button
                         onClick={logoutHandler}
-                        className="flex items-center gap-2 hover:text-red-600"
+                        className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-violet-100 hover:text-violet-700 transition"
                       >
-                        <LogOut size={18} />
-                        Logout
+                        <LogOut className="h-5 w-5" />
+                        <span>Logout</span>
                       </button>
                     </div>
                   </div>
@@ -194,7 +184,6 @@ const Navbar = () => {
       {open && (
         <div className="md:hidden border-t border-slate-200 bg-white">
           <div className="flex flex-col gap-4 px-6 py-5">
-
             {user && user.role === "recruiter" ? (
               <>
                 <Link to="/admin/companies">Companies</Link>
@@ -231,13 +220,13 @@ const Navbar = () => {
                   </>
                 )}
 
-                <Button
-                  variant="destructive"
+                <button
                   onClick={logoutHandler}
-                  className="w-full"
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-violet-100 hover:text-violet-700 transition"
                 >
-                  Logout
-                </Button>
+                  <LogOut className="h-5 w-5" />
+                  <span>Logout</span>
+                </button>
               </>
             )}
           </div>

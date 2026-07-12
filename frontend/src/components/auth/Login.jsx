@@ -20,8 +20,6 @@ const Login = () => {
   });
 
   const { loading, user } = useSelector((store) => store.auth);
-  console.log("loading =", loading);
-console.log("user =", user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,57 +31,36 @@ console.log("user =", user);
     });
   };
 
-const submitHandler = async (e) => {
-  e.preventDefault();
+  const submitHandler = async (e) => {
+    e.preventDefault();
 
-  console.log("========== LOGIN CLICKED ==========");
-  console.log("Input:", input);
-  console.log("API URL:", `${USER_API_END_POINT}/login`);
+    try {
+      dispatch(setLoading(true));
 
-  try {
-    dispatch(setLoading(true));
+      const res = await axios.post(
+        `${USER_API_END_POINT}/login`,
+        input,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
-    console.log("Sending request...");
-
-    const res = await axios.post(
-      `${USER_API_END_POINT}/login`,
-      input,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
+      if (res.data.success) {
+        dispatch(setUser(res.data.user));
+        toast.success(res.data.message);
+        navigate("/");
       }
-    );
-
-    console.log("Response received:", res);
-
-    if (res.data.success) {
-      dispatch(setUser(res.data.user));
-      toast.success(res.data.message);
-      navigate("/");
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message || "Something went wrong"
+      );
+    } finally {
+      dispatch(setLoading(false));
     }
-  } catch (error) {
-    console.log("========== LOGIN ERROR ==========");
-    console.log(error);
-
-    if (error.response) {
-      console.log("Status:", error.response.status);
-      console.log("Data:", error.response.data);
-      toast.error(error.response.data.message);
-    } else if (error.request) {
-      console.log("No response received");
-      console.log(error.request);
-      toast.error("Server is not responding.");
-    } else {
-      console.log("Error:", error.message);
-      toast.error(error.message);
-    }
-  } finally {
-    console.log("========== FINALLY ==========");
-    dispatch(setLoading(false));
-  }
-};
+  };
 
   useEffect(() => {
     if (user) {
@@ -96,10 +73,10 @@ const submitHandler = async (e) => {
       <Navbar />
 
       <div className="flex items-center justify-center min-h-[calc(100vh-80px)] px-4 py-6 sm:py-10">
-       <form
-  onSubmit={submitHandler}
-  className="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-lg p-6 sm:p-8"
->
+        <form
+          onSubmit={submitHandler}
+          className="w-full max-w-md bg-white border border-slate-200 rounded-3xl shadow-lg p-6 sm:p-8"
+        >
           <h1 className="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-2">
             Welcome to UdyogMitra
           </h1>
@@ -107,7 +84,8 @@ const submitHandler = async (e) => {
           <p className="text-center text-slate-500 text-sm sm:text-base mb-8">
             Connecting Talent with Opportunity
           </p>
-          <div className="my-3">
+
+          <div className="mb-4">
             <Label>Email</Label>
             <Input
               className="mt-2 rounded-lg border-slate-300 focus-visible:ring-2 focus-visible:ring-violet-500"
@@ -119,7 +97,7 @@ const submitHandler = async (e) => {
             />
           </div>
 
-          <div className="my-3">
+          <div className="mb-4">
             <Label>Password</Label>
             <Input
               className="mt-2 rounded-lg border-slate-300 focus-visible:ring-2 focus-visible:ring-violet-500"
@@ -131,31 +109,32 @@ const submitHandler = async (e) => {
             />
           </div>
 
+          {/* Role Selection */}
           <div className="mt-6">
             <RadioGroup className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
-              <div className="flex items-center space-x-2">
-                <Input
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
                   type="radio"
                   name="role"
                   value="student"
                   checked={input.role === "student"}
                   onChange={changeEventHandler}
-                  className="cursor-pointer"
+                  className="h-4 w-4 cursor-pointer"
                 />
-                <Label>Student</Label>
-              </div>
+                <span className="text-sm font-medium">Student</span>
+              </label>
 
-              <div className="flex items-center space-x-2">
-                <Input
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
                   type="radio"
                   name="role"
                   value="recruiter"
                   checked={input.role === "recruiter"}
                   onChange={changeEventHandler}
-                  className="cursor-pointer"
+                  className="h-4 w-4 cursor-pointer"
                 />
-                <Label>Recruiter</Label>
-              </div>
+                <span className="text-sm font-medium">Recruiter</span>
+              </label>
             </RadioGroup>
           </div>
 

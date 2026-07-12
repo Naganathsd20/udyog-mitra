@@ -16,7 +16,6 @@ import {
 import { Edit2, Eye, MoreHorizontal } from "lucide-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../ui/button";
 
 const AdminJobsTable = () => {
   const { allAdminJobs, searchJobByText } = useSelector(
@@ -102,38 +101,45 @@ const AdminJobsTable = () => {
                   <TableCell className="text-right">
                     <Popover>
                       <PopoverTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="rounded-full hover:bg-violet-100 hover:text-violet-700"
+                        <button
+                          type="button"
+                          className="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-violet-100 transition"
                         >
                           <MoreHorizontal className="h-5 w-5" />
-                        </Button>
+                        </button>
                       </PopoverTrigger>
 
                       <PopoverContent
+                        side="bottom"
                         align="end"
-                        className="w-40 p-2"
+                        sideOffset={8}
+                        className="z-[99999] w-40 rounded-lg border bg-white p-2 shadow-2xl"
                       >
-                        <div
+                        <button
+                          type="button"
                           onClick={() =>
-                            navigate(`/admin/companies/${job.company?._id}`)
+                            navigate(
+                              `/admin/companies/${job.company?._id}`
+                            )
                           }
-                          className="flex items-center gap-2 p-2 rounded-md cursor-pointer hover:bg-slate-100"
+                          className="flex w-full items-center gap-2 rounded-md p-2 hover:bg-slate-100"
                         >
-                          <Edit2 className="w-4 h-4" />
+                          <Edit2 className="h-4 w-4" />
                           <span>Edit</span>
-                        </div>
+                        </button>
 
-                        <div
+                        <button
+                          type="button"
                           onClick={() =>
-                            navigate(`/admin/jobs/${job._id}/applicants`)
+                            navigate(
+                              `/admin/jobs/${job._id}/applicants`
+                            )
                           }
-                          className="flex items-center gap-2 p-2 rounded-md cursor-pointer hover:bg-slate-100 mt-1"
+                          className="mt-1 flex w-full items-center gap-2 rounded-md p-2 hover:bg-slate-100"
                         >
-                          <Eye className="w-4 h-4" />
+                          <Eye className="h-4 w-4" />
                           <span>Applicants</span>
-                        </div>
+                        </button>
                       </PopoverContent>
                     </Popover>
                   </TableCell>

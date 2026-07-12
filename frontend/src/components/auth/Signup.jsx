@@ -59,12 +59,16 @@ const Signup = () => {
     try {
       dispatch(setLoading(true));
 
-      const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        `${USER_API_END_POINT}/register`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+        }
+      );
 
       if (res.data.success) {
         toast.success(res.data.message);
@@ -151,29 +155,31 @@ const Signup = () => {
 
           <div className="mt-6 space-y-5">
             <RadioGroup className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
-              <div className="flex items-center space-x-2">
-                <Input
+
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
                   type="radio"
                   name="role"
                   value="student"
                   checked={input.role === "student"}
                   onChange={changeEventHandler}
-                  className="cursor-pointer"
+                  className="h-4 w-4 cursor-pointer"
                 />
-                <Label>Student</Label>
-              </div>
+                <span className="text-sm font-medium">Student</span>
+              </label>
 
-              <div className="flex items-center space-x-2">
-                <Input
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
                   type="radio"
                   name="role"
                   value="recruiter"
                   checked={input.role === "recruiter"}
                   onChange={changeEventHandler}
-                  className="cursor-pointer"
+                  className="h-4 w-4 cursor-pointer"
                 />
-                <Label>Recruiter</Label>
-              </div>
+                <span className="text-sm font-medium">Recruiter</span>
+              </label>
+
             </RadioGroup>
 
             <div>
