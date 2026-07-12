@@ -98,15 +98,45 @@ const AdminJobsTable = () => {
                   <TableCell className="whitespace-nowrap">
                     {job.createdAt?.split("T")[0]}
                   </TableCell>
-<TableCell className="text-right">
-  <Button
-    variant="ghost"
-    size="icon"
-    onClick={() => alert("Working")}
-  >
-    <MoreHorizontal className="h-5 w-5" />
-  </Button>
-</TableCell>
+
+                  <TableCell className="text-right">
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="rounded-full hover:bg-violet-100 hover:text-violet-700"
+                        >
+                          <MoreHorizontal className="h-5 w-5" />
+                        </Button>
+                      </PopoverTrigger>
+
+                      <PopoverContent
+                        align="end"
+                        className="w-40 p-2"
+                      >
+                        <div
+                          onClick={() =>
+                            navigate(`/admin/companies/${job.company?._id}`)
+                          }
+                          className="flex items-center gap-2 p-2 rounded-md cursor-pointer hover:bg-slate-100"
+                        >
+                          <Edit2 className="w-4 h-4" />
+                          <span>Edit</span>
+                        </div>
+
+                        <div
+                          onClick={() =>
+                            navigate(`/admin/jobs/${job._id}/applicants`)
+                          }
+                          className="flex items-center gap-2 p-2 rounded-md cursor-pointer hover:bg-slate-100 mt-1"
+                        >
+                          <Eye className="w-4 h-4" />
+                          <span>Applicants</span>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                  </TableCell>
                 </TableRow>
               ))
             )}
