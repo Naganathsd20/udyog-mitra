@@ -21,14 +21,14 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((store) => store.auth);
-
   const [input, setInput] = useState({
     fullname: user?.fullname || "",
     email: user?.email || "",
     phoneNumber: user?.phoneNumber || "",
     bio: user?.profile?.bio || "",
     skills: user?.profile?.skills?.join(", ") || "",
-    file: null,
+    profilePhoto: null,
+    resume: null,
   });
 
   const changeEventHandler = (e) => {
@@ -36,8 +36,12 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
   };
 
   const fileChangeHandler = (e) => {
-    const file = e.target.files?.[0];
-    setInput({ ...input, file });
+    const { name, files } = e.target;
+
+    setInput({
+      ...input,
+      [name]: files[0],
+    });
   };
 
   const submitHandler = async (e) => {
@@ -50,8 +54,12 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     formData.append("bio", input.bio);
     formData.append("skills", input.skills);
 
-    if (input.file) {
-      formData.append("file", input.file);
+    if (input.resume) {
+      formData.append("resume", input.resume);
+    }
+
+    if (input.profilePhoto) {
+      formData.append("profilePhoto", input.profilePhoto);
     }
 
     try {
@@ -172,13 +180,27 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             </div>
 
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="file" className="text-right">
+              <Label htmlFor="profilePhoto" className="text-right">
+                Profile Photo
+              </Label>
+
+              <Input
+                id="profilePhoto"
+                name="profilePhoto"
+                type="file"
+                accept="image/*"
+                onChange={fileChangeHandler}
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="resume" className="text-right">
                 Resume
               </Label>
 
               <Input
-                id="file"
-                name="file"
+                id="resume"
+                name="resume"
                 type="file"
                 accept="application/pdf"
                 onChange={fileChangeHandler}

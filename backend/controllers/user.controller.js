@@ -115,12 +115,12 @@ export const login = async (req, res) => {
 
     return res
       .status(200)
-    .cookie("token", token, {
-  httpOnly: true,
-  secure: true,
-  sameSite: "none",
-  maxAge: 24 * 60 * 60 * 1000,
-})
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: 24 * 60 * 60 * 1000,
+      })
       .json({
         message: `Welcome back ${user.fullname}`,
         user,
@@ -159,7 +159,7 @@ export const updateProfile = async (req, res) => {
   try {
     console.log("========== UPDATE PROFILE ==========");
     console.log("BODY:", req.body);
-    console.log("FILE:", req.file);
+    console.log("FILES:", req.files);
     console.log("USER ID:", req.id);
 
     const { fullname, email, phoneNumber, bio, skills } = req.body;
@@ -185,20 +185,29 @@ export const updateProfile = async (req, res) => {
     if (phoneNumber) user.phoneNumber = phoneNumber;
     if (bio) user.profile.bio = bio;
     if (skills) user.profile.skills = skillsArray;
+    // Upload Profile Photo
+    if (req.files?.profilePhoto) {
+      const profilePhoto = req.files.profilePhoto[0];
 
-    const file = req.file;
+      const fileUri = getDataUri(profilePhoto);
 
-    if (file) {
-      const fileUri = getDataUri(file);
+      const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+
+      user.profile.profilePhoto = cloudResponse.secure_url;
+    }
+
+    // Upload Resume
+    if (req.files?.resume) {
+      const resume = req.files.resume[0];
+
+      const fileUri = getDataUri(resume);
 
       const cloudResponse = await cloudinary.uploader.upload(fileUri.content, {
         resource_type: "raw",
       });
 
-      console.log("Cloudinary Response:", cloudResponse);
-
       user.profile.resume = cloudResponse.secure_url;
-      user.profile.resumeOriginalName = file.originalname;
+      user.profile.resumeOriginalName = resume.originalname;
     }
 
     await user.save();
