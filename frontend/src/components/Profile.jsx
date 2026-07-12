@@ -8,42 +8,43 @@ import { Label } from "./ui/label";
 import AppliedJobTable from "./AppliedJobTable";
 import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
-import useGetAppliedJobs from "@/hooks/ueGetAppliedJob"
+import useGetAppliedJobs from "@/hooks/ueGetAppliedJob";
 
 const Profile = () => {
   useGetAppliedJobs();
   const [open, setOpen] = useState(false);
   const { user } = useSelector((store) => store.auth);
 
-
   return (
     <div className="bg-[#F9FAFB] min-h-screen">
       <Navbar />
 
-     <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-200 my-8 p-8">
+      <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-200 my-8 p-8">
         {/* Top Section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <Avatar className="h-28 w-28 border-4 border-violet-100 shadow-md">
               <AvatarImage
-                src="https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg"
-                alt="profile"
+                src={user?.profile?.profilePhoto}
+                alt={user?.fullname}
               />
             </Avatar>
 
             <div>
-           <h1 className="text-3xl font-bold text-slate-900">{user?.fullname}</h1>
+              <h1 className="text-3xl font-bold text-slate-900">
+                {user?.fullname}
+              </h1>
               <p className="text-slate-600 mt-2">
-  {user?.profile?.bio || "No bio added"}
-</p>
+                {user?.profile?.bio || "No bio added"}
+              </p>
             </div>
           </div>
 
-         <Button
-  onClick={() => setOpen(true)}
-  variant="outline"
-  className="rounded-xl hover:bg-slate-100"
-           // variant="outline"
+          <Button
+            onClick={() => setOpen(true)}
+            variant="outline"
+            className="rounded-xl hover:bg-slate-100"
+            // variant="outline"
             size="icon"
           >
             <Pen />
@@ -89,7 +90,7 @@ const Profile = () => {
             {user?.profile?.resume ? (
               <a
                 href={`${user.profile.resume}?fl_attachment=${encodeURIComponent(
-                  user.profile.resumeOriginalName
+                  user.profile.resumeOriginalName,
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
