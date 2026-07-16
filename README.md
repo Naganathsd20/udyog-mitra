@@ -77,6 +77,7 @@ UdyogMitra is a modern Full Stack Job Portal developed using the MERN Stack. It 
 # 📸 Project Screenshots
 
 ### 🏠 Home Page
+<img width="936" height="815" alt="3" src="https://github.com/user-attachments/assets/41adfafb-78f2-4a4a-aa5c-045bbee247b8" />
 
 
 
