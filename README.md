@@ -1,4 +1,4 @@
-<img width="936" height="815" alt="3" src="https://github.com/user-attachments/assets/5c2c3354-7ef0-41aa-a491-e8c8f9f1e396" /># 🚀 UdyogMitra - Full Stack MERN Job Portal
+# 🚀 UdyogMitra - Full Stack MERN Job Portal
 
 UdyogMitra is a modern Full Stack Job Portal developed using the MERN Stack. It provides a seamless platform where students can search and apply for jobs, while recruiters can manage companies, post job opportunities, and review applications. The application is fully responsive and deployed on the cloud.
 
@@ -77,20 +77,25 @@ UdyogMitra is a modern Full Stack Job Portal developed using the MERN Stack. It 
 # 📸 Project Screenshots
 
 ### 🏠 Home Page
-<img width="936" height="815" alt="3" src="https://github.com/user-attachments/assets/41adfafb-78f2-4a4a-aa5c-045bbee247b8" />
+<img src="https://github.com/user-attachments/assets/41adfafb-78f2-4a4a-aa5c-045bbee247b8" alt="Home Page" />
 
 ### 💼 Browse Jobs
-<img width="755" height="418" alt="4" src="https://github.com/user-attachments/assets/96976372-c658-49d0-808d-534355c1a23f" />
+<img src="https://github.com/user-attachments/assets/96976372-c658-49d0-808d-534355c1a23f" alt="Browse Jobs" />
+
 ### 📄 Job Details
-<img width="685" height="409" alt="5" src="https://github.com/user-attachments/assets/de592307-ddf4-44a1-a724-b35da201052e" />
+<img src="https://github.com/user-attachments/assets/de592307-ddf4-44a1-a724-b35da201052e" alt="Job Details" />
+
 ### 👤 Student Profile
-<img width="508" height="388" alt="16" src="https://github.com/user-attachments/assets/5fa49d3a-81aa-4b32-b3c3-17dbbdb54bc6" />
+<img src="https://github.com/user-attachments/assets/5fa49d3a-81aa-4b32-b3c3-17dbbdb54bc6" alt="Student Profile" />
+
 ### 🏢 Recruiter Dashboard
-<img width="542" height="377" alt="14" src="https://github.com/user-attachments/assets/98f566ae-61f6-49e4-a5a4-8c89413a18f6" />
+<img src="https://github.com/user-attachments/assets/98f566ae-61f6-49e4-a5a4-8c89413a18f6" alt="Recruiter Dashboard" />
+
 ### 📋 Company Management
-<img width="517" height="414" alt="10" src="https://github.com/user-attachments/assets/17e89368-5ef8-4e6d-80ed-7d2c826263b3" />
+<img src="https://github.com/user-attachments/assets/17e89368-5ef8-4e6d-80ed-7d2c826263b3" alt="Company Management" />
+
 ### 👥 Applicant Management
-<img width="653" height="316" alt="15" src="https://github.com/user-attachments/assets/668258aa-576e-4d3a-a133-64a13ab91d5d" />
+<img src="https://github.com/user-attachments/assets/668258aa-576e-4d3a-a133-64a13ab91d5d" alt="Applicant Management" />
 
 
 ---
