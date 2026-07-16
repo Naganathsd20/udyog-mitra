@@ -79,33 +79,19 @@ UdyogMitra is a modern Full Stack Job Portal developed using the MERN Stack. It 
 ### 🏠 Home Page
 <img width="936" height="815" alt="3" src="https://github.com/user-attachments/assets/41adfafb-78f2-4a4a-aa5c-045bbee247b8" />
 
-
-
-> Add Home Page Screenshot
-
 ### 💼 Browse Jobs
-
-> Add Browse Jobs Screenshot
-
+<img width="755" height="418" alt="4" src="https://github.com/user-attachments/assets/96976372-c658-49d0-808d-534355c1a23f" />
 ### 📄 Job Details
-
-> Add Job Details Screenshot
-
+<img width="685" height="409" alt="5" src="https://github.com/user-attachments/assets/de592307-ddf4-44a1-a724-b35da201052e" />
 ### 👤 Student Profile
-
-> Add Profile Screenshot
-
+<img width="508" height="388" alt="16" src="https://github.com/user-attachments/assets/5fa49d3a-81aa-4b32-b3c3-17dbbdb54bc6" />
 ### 🏢 Recruiter Dashboard
-
-> Add Recruiter Dashboard Screenshot
-
+<img width="542" height="377" alt="14" src="https://github.com/user-attachments/assets/98f566ae-61f6-49e4-a5a4-8c89413a18f6" />
 ### 📋 Company Management
-
-> Add Company Management Screenshot
-
+<img width="517" height="414" alt="10" src="https://github.com/user-attachments/assets/17e89368-5ef8-4e6d-80ed-7d2c826263b3" />
 ### 👥 Applicant Management
+<img width="653" height="316" alt="15" src="https://github.com/user-attachments/assets/668258aa-576e-4d3a-a133-64a13ab91d5d" />
 
-> Add Applicant Management Screenshot
 
 ---
 
