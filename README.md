@@ -77,25 +77,25 @@ UdyogMitra is a modern Full Stack Job Portal developed using the MERN Stack. It 
 # 📸 Project Screenshots
 
 ### 🏠 Home Page
-<img src="https://github.com/user-attachments/assets/41adfafb-78f2-4a4a-aa5c-045bbee247b8" alt="Home Page" />
+<img src="https://github.com/user-attachments/assets/41adfafb-78f2-4a4a-aa5c-045bbee247b8" width="700"/>
 
 ### 💼 Browse Jobs
-<img src="https://github.com/user-attachments/assets/96976372-c658-49d0-808d-534355c1a23f" alt="Browse Jobs" />
+<img src="https://github.com/user-attachments/assets/96976372-c658-49d0-808d-534355c1a23f" width="700"/>
 
 ### 📄 Job Details
-<img src="https://github.com/user-attachments/assets/de592307-ddf4-44a1-a724-b35da201052e" alt="Job Details" />
+<img src="https://github.com/user-attachments/assets/de592307-ddf4-44a1-a724-b35da201052e" width="700"/>
 
 ### 👤 Student Profile
-<img src="https://github.com/user-attachments/assets/5fa49d3a-81aa-4b32-b3c3-17dbbdb54bc6" alt="Student Profile" />
+<img src="https://github.com/user-attachments/assets/5fa49d3a-81aa-4b32-b3c3-17dbbdb54bc6" width="700"/>
 
 ### 🏢 Recruiter Dashboard
-<img src="https://github.com/user-attachments/assets/98f566ae-61f6-49e4-a5a4-8c89413a18f6" alt="Recruiter Dashboard" />
+<img src="https://github.com/user-attachments/assets/98f566ae-61f6-49e4-a5a4-8c89413a18f6" width="700"/>
 
 ### 📋 Company Management
-<img src="https://github.com/user-attachments/assets/17e89368-5ef8-4e6d-80ed-7d2c826263b3" alt="Company Management" />
+<img src="https://github.com/user-attachments/assets/17e89368-5ef8-4e6d-80ed-7d2c826263b3" width="700"/>
 
 ### 👥 Applicant Management
-<img src="https://github.com/user-attachments/assets/668258aa-576e-4d3a-a133-64a13ab91d5d" alt="Applicant Management" />
+<img src="https://github.com/user-attachments/assets/668258aa-576e-4d3a-a133-64a13ab91d5d" width="700"/>
 
 
 ---
